@@ -50,6 +50,16 @@ st.markdown("""
             margin: auto;
         }
 
+        /* تخصيص شريط الجانبي (Sidebar) */
+        [data-testid="stSidebar"] {
+            background-color: #f8fafc !important;
+            border-left: 1px solid #e2e8f0 !important;
+        }
+        [data-testid="stSidebar"] * {
+            direction: rtl;
+            text-align: right;
+        }
+
         /* رأس الصفحة وتصميم الشعار */
         .app-header {
             text-align: center !important;
@@ -185,12 +195,51 @@ st.markdown("""
             padding: 15px;
             margin-bottom: 20px;
         }
+
+        /* بطاقة معلومات المطور الجانبية */
+        .dev-card {
+            text-align: center !important;
+            padding: 15px !important;
+            background: rgba(30, 58, 138, 0.04) !important;
+            border-radius: 16px !important;
+            border: 1px solid rgba(30, 58, 138, 0.08) !important;
+            margin-top: 15px !important;
+        }
+        .dev-card p {
+            text-align: center !important;
+        }
     </style>
 """, unsafe_allow_html=True)
 
 # تهيئة حالة المفضلة في جلسة العمل
 if "favorites" not in st.session_state:
     st.session_state.favorites = []
+
+# إعداد محتويات الشريط الجانبي (Sidebar)
+with st.sidebar:
+    if logo_base64:
+        st.markdown(f"""
+            <div style="text-align: center; margin-top: 20px; margin-bottom: 15px;">
+                <img src="data:image/png;base64,{logo_base64}" style="width: 80px; height: 80px; border-radius: 50%; box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);">
+            </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("<h3 style='text-align: center;'>🧭 تطبيق مَسَار</h3>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: justify; font-size: 0.9rem; color: #4b5563; line-height: 1.5;'>مرشدك الذكي لتوجيه الأبناء نحو محتوى هادف وبناء يعزز قدراتهم للمستقبل بدلاً من المحتوى غير المفيد.</p>", unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    # إضافة معلومات التطوير وتوقيع المهندسة في شريط المعلومات
+    st.markdown("""
+        <div class="dev-card">
+            <p style="font-size: 0.95rem; color: #1e3a8a; font-weight: bold; margin-bottom: 8px;">💻 معلومات التطوير</p>
+            <p style="font-size: 0.85rem; color: #4b5563; line-height: 1.6; margin: 0;">
+                برمجة وتصميم وتطوير المهندسة المتخصصة في الذكاء الاصطناعي<br>
+                <span style="color: #1e3a8a; font-weight: 600; font-size: 0.9rem;">رنا وعدالله محمد</span><br>
+                © 2026
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
 
 # عرض الشعار بشكل دائري متناسق في منتصف الصفحة
 if logo_base64:
