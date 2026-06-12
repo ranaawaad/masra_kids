@@ -273,10 +273,10 @@ if st.session_state.favorites:
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# 1. اختيار الفئة العمرية باستخدام أزرار مقسمة عصرية
+# 1. اختيار القسم الرئيسي باستخدام أزرار مقسمة عصرية
 age_groups = list(CHANNELS.keys())
 selected_age = st.segmented_control(
-    "👶 اختر الفئة العمرية للطفل:", 
+    "🧭 اختر الفئة العمرية أو القسم الرئيسي:", 
     options=age_groups, 
     selection_mode="single",
     default=age_groups[0]
